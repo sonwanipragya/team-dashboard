@@ -1,0 +1,32 @@
+### Create a User
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com",
+  "password": "password123"
+}
+
+### Create a Project
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "name": "Team Dashboard",
+  "description": "Real-time team tracking project"
+}
+
+### Create a Task
+POST http://localhost:8080/api/tasks/project/1
+Content-Type: application/json
+
+{
+  "title": "Setup backend",
+  "description": "Build Spring Boot APIs",
+  "status": "In Progress",
+  "project": { "id": 1 }
+}
+
+### Fetch All Tasks
+GET http://localhost:8080/api/tasks
