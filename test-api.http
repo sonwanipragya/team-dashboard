@@ -1,15 +1,32 @@
-### Create a User
-POST http://localhost:8080/api/users
+### 1️⃣ Signup (optional — only first time)
+POST http://localhost:8080/auth/signup
 Content-Type: application/json
 
 {
-  "name": "Alice",
-  "email": "alice@example.com",
-  "password": "password123"
+  "name": "Ali  don",
+  "email": "alidon2@example.com",
+  "password": "passwali123"
 }
 
-### Create a Project
+### 2️⃣ Login and capture token
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "name": "Ali  don",
+  "email": "alidon2@example.com",
+  "password": "passwali123"
+}
+
+> {% client.global.set("token", response.body.token); %}
+
+### 3️⃣ Get all projects (using the stored token)
+GET http://localhost:8080/api/projects
+Authorization: Bearer {{token}}
+
+### 4️⃣ Create new project
 POST http://localhost:8080/api/projects
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
@@ -17,16 +34,13 @@ Content-Type: application/json
   "description": "Real-time team tracking project"
 }
 
-### Create a Task
+### 5️⃣ Create new task
 POST http://localhost:8080/api/tasks/project/1
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
   "title": "Setup backend",
   "description": "Build Spring Boot APIs",
-  "status": "In Progress",
-  "project": { "id": 1 }
+  "status": "In Progress"
 }
-
-### Fetch All Tasks
-GET http://localhost:8080/api/tasks
