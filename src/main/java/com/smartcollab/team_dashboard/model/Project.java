@@ -1,5 +1,6 @@
 package com.smartcollab.team_dashboard.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -30,5 +31,6 @@ public class Project {
     private User owner; // project manager / creator
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Task> tasks;  // link all tasks under this project
 }
